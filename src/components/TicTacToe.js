@@ -7,7 +7,7 @@ class PlayingFieldSection extends React.Component {
         this.handleSectionClick = this.handleSectionClick.bind(this);
     }
     handleSectionClick() {
-        console.log("PlayingFieldSection handleSectionClick [this.props]", this.props);
+        // console.log("PlayingFieldSection handleSectionClick [this.props]", this.props);
         this.props.onSectionClick(this.props.xAxis, this.props.yAxis);
     }
     render() {
@@ -74,17 +74,17 @@ class TicTacToe extends React.Component {
         this.setState({ playingField: [[{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }]] });
     }
     checkThreeInARow() {
-        console.log("begin checkThreeInARow");
+        // console.log("begin checkThreeInARow");
         let playingField = this.state.playingField;
         let win = 'n'
         let isPlayingFieldFull = true;
         for (let oneAxis = 0; oneAxis < playingField.length; oneAxis++) {
             if (playingField[oneAxis][0].symbol === this.defaultValue || playingField[oneAxis][1].symbol === this.defaultValue || playingField[oneAxis][2].symbol === this.defaultValue) {
                 isPlayingFieldFull = false;
-                // console.log("xAxis has empty Value : [onAxis], [playingField[oneAxis][0].symbol]", oneAxis, playingField[oneAxis][0].symbol);
+                // // console.log("xAxis has empty Value : [onAxis], [playingField[oneAxis][0].symbol]", oneAxis, playingField[oneAxis][0].symbol);
             }
             // else{
-            //     console.log("xAxis is full : [onAxis]", oneAxis);
+            //     // console.log("xAxis is full : [onAxis]", oneAxis);
             // }
             if (playingField[oneAxis][0].symbol !== this.defaultValue && playingField[oneAxis][0].symbol === playingField[oneAxis][1].symbol && playingField[oneAxis][0].symbol === playingField[oneAxis][2].symbol) {
                 playingField[oneAxis][0].isFullLine = true;
@@ -114,7 +114,7 @@ class TicTacToe extends React.Component {
         if (win === 'n' && isPlayingFieldFull) {
             win = 'd';
         }
-        console.log("end checkThreeInARow [win]", win);
+        // console.log("end checkThreeInARow [win]", win);
         return win;
     }
     handleResetButtonClick(event) {
@@ -122,7 +122,7 @@ class TicTacToe extends React.Component {
     }
     handleSectionClick(xAxis, yAxis) {
         let playingField = this.state.playingField;
-        console.log("TicTacToe handleSectionClick start [playingField],[xAxis],[yAxis]", playingField, xAxis, yAxis);
+        // console.log("TicTacToe handleSectionClick start [playingField],[xAxis],[yAxis]", playingField, xAxis, yAxis);
 
         let resultOfCheck = this.checkThreeInARow();
 
@@ -130,7 +130,7 @@ class TicTacToe extends React.Component {
             playingField[xAxis][yAxis].symbol = this.playerXsTurn ? this.symbolPlayerX : this.symbolPlayerO;
             this.playerXsTurn = !this.playerXsTurn;
         }
-        console.log("TicTacToe handleSectionClick stop [playingField]", playingField);
+        // console.log("TicTacToe handleSectionClick stop [playingField]", playingField);
         this.setState({ playingField: playingField });
 
         // recalculate ResultCheck

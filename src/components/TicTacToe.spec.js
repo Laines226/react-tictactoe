@@ -44,8 +44,8 @@ describe('<TicTacToe />', () => {
         expect(section01.childAt(0).text()).toBe('O');
     });
 });
-describe('<TicTacToe /> checkThreeInARow', () => {
-    it('one row with Xs to return true', () => {
+describe('<TicTacToe /> checkThreeInARow()', () => {
+    it('one row with Xs to return \'X\' after clicks', () => {
         const wrapper = mount(<TicTacToe />);
         let handleSectionClick = () => {
             console.log("clicked");
@@ -56,5 +56,40 @@ describe('<TicTacToe /> checkThreeInARow', () => {
         let section11 = wrapper.find('[id="11"]').simulate('click');
         let section02 = wrapper.find('[id="02"]').simulate('click');
         expect(wrapper.instance().checkThreeInARow()).toBe('X');
+    });
+    it('one column with Xs to return \'X\' after setState', () => {
+        const wrapper = mount(<TicTacToe />);
+        let handleSectionClick = () => {
+            console.log("clicked");
+        }
+        wrapper.setState({ playingField: [[{ symbol: "X", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "X", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "X", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }]] });
+        expect(wrapper.instance().checkThreeInARow()).toBe('X');
+    });
+    it('one diagonale with Xs to return \'X\' after setState', () => {
+        const wrapper = mount(<TicTacToe />);
+        let handleSectionClick = () => {
+            console.log("clicked");
+        }
+        wrapper.setState({ playingField: [[{ symbol: "X", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "O", isFullLine: false }, { symbol: "X", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "O", isFullLine: false }, { symbol: "X", isFullLine: false }, { symbol: "X", isFullLine: false }]] });
+        expect(wrapper.instance().checkThreeInARow()).toBe('X');
+    });
+    it('one diagonale with Os to return \'O\' after setState', () => {
+        const wrapper = mount(<TicTacToe />);
+        let handleSectionClick = () => {
+            console.log("clicked");
+        }
+        wrapper.setState({ playingField: [[{ symbol: "O", isFullLine: false }, { symbol: "X", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "X", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "O", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: "O", isFullLine: false }]] });
+        expect(wrapper.instance().checkThreeInARow()).toBe('O');
+    });
+});
+describe('<TicTacToe /> reset()', () => {
+    it('state.playingfield is empty array after reset', () => {
+        const wrapper = mount(<TicTacToe />);
+        let handleSectionClick = () => {
+            console.log("clicked");
+        }
+        wrapper.setState({ playingField: [[{ symbol: "O", isFullLine: false }, { symbol: "X", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "X", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: "O", isFullLine: false }, { symbol: "O", isFullLine: false }, { symbol: "O", isFullLine: false }]] });
+        wrapper.instance().reset();
+        expect(wrapper.state('playingField')).toEqual([[{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }], [{ symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }, { symbol: " ", isFullLine: false }]]);
     });
 });
