@@ -12,7 +12,7 @@ class PlayingFieldSection extends React.Component {
     }
     render() {
         let sectionParagraphCn = this.props.content.isFullLine ? 'inLineP' : 'normalP';
-        return <td onClick={this.handleSectionClick}><p className={sectionParagraphCn}>{this.props.content.symbol}</p></td>;
+        return <td id={'' + this.props.xAxis +  this.props.yAxis} onClick={this.handleSectionClick}><p className={sectionParagraphCn}>{this.props.content.symbol}</p></td>;
     }
 }
 

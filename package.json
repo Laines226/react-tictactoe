@@ -7,7 +7,9 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "react-scripts": "0.9.4"
+    "react-scripts": "0.9.4",
+    "enzyme" : "^2.7.1",
+    "react-addons-test-utils" :"^15.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
